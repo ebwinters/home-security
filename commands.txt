@@ -1,0 +1,4 @@
+raspistill -o ~/Desktop/image.jpg
+raspivid -o movie.h264 -t 5000
+sudo /usr/bin/convert ~/home-sec/newimage.jpg -pointsize 32 -fill red -annotate +500+500 'FUCK' ~/home-sec/newimage.jpg 
+
