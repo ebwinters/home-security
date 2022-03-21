@@ -33,6 +33,4 @@ def send_mail():
     s.login(GMAIL_USERNAME, GMAIL_PASSWORD)
     s.sendmail(GMAIL_USERNAME, recipient, msg.as_string())
     s.quit()
-
-send_mail()
     
