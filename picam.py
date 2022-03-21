@@ -23,7 +23,7 @@ from PIL import Image
 # cameraSettings     - "" = no extra settings; "-hf" = Set horizontal flip of image; "-vf" = Set vertical flip; "-hf -vf" = both horizontal and vertical flip
 threshold = 20
 sensitivity = 40
-forceCapture = True
+forceCapture = False
 forceCaptureTime = 60 * 60 # Once an hour
 filepath = "/home/pi/home-sec/picam"
 filenamePrefix = "capture"

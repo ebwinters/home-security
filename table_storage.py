@@ -24,7 +24,3 @@ class TableStorage:
                 if (key == "ShouldMonitor"):
                     shouldMonitor = entity["ShouldMonitor"]
         return shouldMonitor
-
-tableStorage = TableStorage("homesecflags")
-x = tableStorage.GetShouldMonitorFlag()
-print(x)
