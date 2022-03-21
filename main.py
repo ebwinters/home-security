@@ -10,12 +10,14 @@ motionState = False
 lastCheckedTime = datetime.datetime.now()
 shouldRunMotionDetection = True
 while True:
-    if lastCheckedTime < datetime.datetime.now():
-        shouldRunMotionDetection = tableStorage.GetShouldMonitorFlag()
-        lastCheckedTime = datetime.datetime.now()
-    motionState = picam.motion()
-    print (motionState)
-    if (motionState):
-        camera.takepicture()
-        send_mail()
-        sleep(1)
+    currentDate = datetime.datetime.now()
+    if currentDate.second == 59 or currentDate.second == 60:
+        if lastCheckedTime < currentDate:
+            shouldRunMotionDetection = tableStorage.GetShouldMonitorFlag()
+            lastCheckedTime = currentDate
+    if (shouldRunMotionDetection):
+        motionState = picam.motion()
+        if (motionState):
+            camera.takepicture()
+            send_mail()
+            sleep(1)
