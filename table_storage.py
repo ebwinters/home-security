@@ -1,8 +1,10 @@
+from os import read
 from azure.data.tables import TableClient, UpdateMode
+from util import readAppSetting
 
 class TableStorage:
     def __init__(self, tableName):
-        connection_string = ""
+        connection_string = readAppSetting("storageConnectionString")
         self.tableClient = TableClient.from_connection_string(conn_str=connection_string, table_name=tableName)
 
     def SetShouldMonitorFlag(self, shouldMonitor):
