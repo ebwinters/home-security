@@ -3,16 +3,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import json
 import smtplib
+from util import readAppSetting
 
-f = open('mail.json')
-creds = json.load(f)
 
 #Email Variables
 SMTP_SERVER = 'smtp.gmail.com' #Email Server (don't change!)
 SMTP_PORT = 587 #Server Port (don't change!)
-GMAIL_USERNAME = creds['email'] #change this to match your gmail account
+GMAIL_USERNAME = readAppSetting('email') #change this to match your gmail account
 recipient = "ebwinters@comcast.net"
-GMAIL_PASSWORD = creds["pass"] #change this to match your gmail password
+GMAIL_PASSWORD = readAppSetting('pass') #change this to match your gmail password
 img_file = '/home/pi/pi-camera-stream-flask/static/newimage.jpg'
 def send_mail():
     with open(img_file, 'rb') as f:
