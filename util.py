@@ -1,7 +1,7 @@
 import json
 
 def readAppSetting(appSettingKey):
-    f = open('/home/pi/home-sec/appsettings.json')
+    f = open('D:\\repos\\home-security\\appsettings.json')
     contents = json.load(f)
     f.close()
     return contents[appSettingKey]
