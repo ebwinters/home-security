@@ -1,12 +1,19 @@
-import os, uuid
-from turtle import bye
 import json
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, __version__
+from azure.storage.blob import BlobServiceClient, __version__
 from util import readAppSetting
 
-blob_service_client = BlobServiceClient.from_connection_string(readAppSetting("storageConnectionString"))
-blob_client = blob_service_client.get_blob_client(container="home-security-status", blob="status.json")
+class BlobStorage:
+    def __init__(self):
+        connection_string = readAppSetting("storageConnectionString")
+        containerName = "home-security-status"
+        blobName = "status.json"
+        blob_service_client = BlobServiceClient.from_connection_string(readAppSetting("storageConnectionString"))
+        self.blob_client = blob_service_client.get_blob_client(container=containerName, blob=blobName)
+    
+    def GetStatus(self):
+        bytes = self.blob_client.download_blob().readall()
+        jsonObject = json.loads(bytes)
+        return jsonObject["status"]
 
-bytes = blob_client.download_blob().readall()
-jsonObject = json.loads(bytes)
-print (jsonObject["status"])
+
+
