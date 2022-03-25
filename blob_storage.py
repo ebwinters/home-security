@@ -1,4 +1,5 @@
 import os, uuid
+from turtle import bye
 import json
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, __version__
 from util import readAppSetting
@@ -7,10 +8,5 @@ blob_service_client = BlobServiceClient.from_connection_string(readAppSetting("s
 blob_client = blob_service_client.get_blob_client(container="home-security-status", blob="status.json")
 
 bytes = blob_client.download_blob().readall()
-print (json.load(bytes))
-
-# print("\nUploading to Azure Storage as blob")
-# data = {}
-# data['status'] = 'on'
-# json_data = json.dumps(data)
-# blob_client.upload_blob(json_data)
+jsonObject = json.loads(bytes)
+print (jsonObject["status"])
